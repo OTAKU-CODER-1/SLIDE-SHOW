@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlideShow</title>
+
+    <style>
+
+        body {
+            margin: 0;
+        }
+
+        .slideshow_container {
+            max-width: 600px;
+            position: relative;
+            margin: auto;
+        }
+
+        .mySlides {
+            display: none;
+        }
+
+        .slide_number {
+            color: #f2f2f2;
+            font-size: 12px;
+            padding: 8px 12px;
+            position: absolute;
+            top: 0;
+        }
+
+        .slide_img {
+            width: 100%;
+        }
+
+        .slide_text {
+            color: #f2f2f2;
+            font-size: 15px;
+            padding: 8px 12px;
+            position: absolute;
+            bottom: 8px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .nav_prev, .nav_next {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            margin-top: -20px;
+            padding: 16px;
+            color: rgb(255,255,255);
+            font-weight: bold;
+            font-size: 18px;
+            border-radius: 0 5px 5px 0;
+            user-select: none;
+            transition: 0.6s ease;
+        }
+
+        .nav_next {
+            right: 0;
+            border-radius: 5px 0 0 5px;
+        }
+
+        .nav_prev:hover, .nav_next:hover {
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .slideshow_dots {
+            text-align: center;
+        }
+
+        .nav_dots {
+            cursor: pointer;
+            width: 15px;
+            height: 15px;
+            margin: 0 2px;
+            background-color: #bbbbbb;
+            border-radius: 50%;
+            display: inline-block;
+            user-select: none;
+        }
+
+        .dots_active, .nav_dots:hover {
+            background-color: #717171;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <!-- SlideShow Container-->
+    <div class="slideshow_container">
+
+        <!-- Slides -->
+        <div class="mySlides">
+            <div class="slide_number"></div>
+            <img class="slide_img" src="img/ferrari-ges.svg">
+            <div class="slide_text"></div>
+        </div>
+
+        <div class="mySlides">
+            <div class="slide_number"></div>
+            <img class="slide_img" src="/img/microsoft.svg">
+            <div class="slide_text"></div>
+        </div>
+
+        <div class="mySlides">
+            <div class="slide_number"></div>
+            <img class="slide_img" src="/img/samsung.svg">
+            <div class="slide_text"></div>
+        </div>
+
+        <div class="mySlides">
+            <div class="slide_number"></div>
+            <img class="slide_img" src="img/gogle.svg">
+            <div class="slide_text"></div>
+        </div>
+
+        <!-- Nav Next / Previus -->
+        <a class="nav_prev" onclick="plusSlide(-1)">&#10094;</a>
+        <a class="nav_next" onclick="plusSlide(1)">&#10095;</a>
+
+    </div>
+
+    <!-- Dots Nav-->
+    <div class="slideshow_dots">
+        <span class="nav_dots" onclick="currentSlide(1)"></span>
+        <span class="nav_dots" onclick="currentSlide(2)"></span>
+        <span class="nav_dots" onclick="currentSlide(3)"></span>
+        <span class="nav_dots" onclick="currentSlide(4)"></span>
+    </div>
+
+    <script>
+        let $slideIndex = 1;
+        showSlides($slideIndex);
+
+        // navegação das setas
+        function plusSlide(n) {
+            showSlides($slideIndex += n);
+        }
+
+        // navegação das bolas
+        function currentSlide(n) {
+            showSlides($slideIndex = n);
+        }
+
+        // função para mostrar os slides
+        function showSlides(n) {
+
+            // definição das variaveis
+            let $i;
+            let $slides = document.getElementsByClassName('mySlides');
+            let $dots = document.getElementsByClassName('nav_dots');
+
+            // controlar o primeiro e ultimo slide
+            if (n > $slides.length) {$slideIndex = 1}
+            if (n < 1) {$slideIndex = $slides.length}
+
+            // ciclo esconder os slides e limpar as bolas ativas
+            for ($i = 0; $i < $slides.length; $i++)
+                {
+                    $slides[$i].style.display = 'none';
+                    $dots[$i].className.replace(' dots_active', '');
+                }
+            
+            // mostrar os slides
+            $slides[$slideIndex-1].style.display = 'block';
+            
+
+
+
+        }
+
+    </script>
+
+</body>
+</html>
